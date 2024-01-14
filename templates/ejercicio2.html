@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 2</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        form {
+            margin: 0 auto;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input, button {
+            margin-top: 5px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none; /* Elimina el contorno al hacer clic */
+        }
+
+        input[type="text"] {
+            text-align: left;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 2</h1>
+    <form action="/comparar_nombres" method="post">
+        <label>Nombre 1:</label>
+        <input type="text" name="nombre1" required autocomplete="off">
+
+        <label>Nombre 2:</label>
+        <input type="text" name="nombre2" required autocomplete="off">
+
+        <label>Nombre 3:</label>
+        <input type="text" name="nombre3" required autocomplete="off">
+
+        <button type="submit">Enviar</button>
+    </form>
+    <div id="resultado">
+        {% if nombre_mas_largo is defined %}
+            <p>Nombre con más caracteres: {{ nombre_mas_largo }}</p>
+            <p>Cantidad de caracteres: {{ cantidad_caracteres }}</p>
+        {% endif %}
+    </div>
+
+    {% if nombres is defined %}
+        <h2>Nombres Ingresados:</h2>
+        <ul>
+            {% for nombre in nombres %}
+                <li>{{ nombre }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

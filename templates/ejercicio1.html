@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Notas</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        form {
+            margin: 0 auto;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input, button {
+            margin-top: 5px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none; /* Elimina el contorno al hacer clic */
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Notas</h1>
+    <form action="/calcular_promedio" method="post">
+    <label>Nota 1:</label>
+    <input type="number" name="nota1" min="10" max="70" required autocomplete="off" value="{{ nota1|default('') }}">
+
+    <label>Nota 2:</label>
+    <input type="number" name="nota2" min="10" max="70" required autocomplete="off" value="{{ nota2|default('') }}">
+
+    <label>Nota 3:</label>
+    <input type="number" name="nota3" min="10" max="70" required autocomplete="off" value="{{ nota3|default('') }}">
+
+    <label>Asistencia (%):</label>
+    <input type="number" name="asistencia" min="0" max="100" required autocomplete="off" value="{{ asistencia|default('') }}">
+
+    <button type="submit">Enviar</button>
+</form>
+    <div id="resultado">
+        {% if promedio is defined %}
+            <p>Promedio: {{ promedio }}</p>
+            <p>Estado: {{ estado }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
